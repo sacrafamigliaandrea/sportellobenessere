@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sportello benessere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blu:#123E90; --bluD:#0B2A66; --blu2:#1D52B5; --bluL:rgba(18,62,144,.07); --bluLL:rgba(18,62,144,.04);
+  --bg:#F3F6FB; --card:#FFFFFF; --text:#14213D; --muted:#4A5A7A; --light:#8A97B1;
+  --brd:#D3DCEC; --brd2:#B5C3DD;
+  --attesa:#3567C8; --attesaL:#EDF2FC;
+  --verde:#1B7A46; --verdeL:#E8F4EC;
+  --ambra:#9A6B00; --ambraB:#C99A1E; --ambraL:#FBF3DF;
+  --shadow:0 2px 12px rgba(18,62,144,.07); --shadow2:0 12px 40px rgba(11,42,102,.18);
+  --body:'Atkinson Hyperlegible',Helvetica,Arial,sans-serif;
+  --head:'Lexend',sans-serif;
+  --maxw:1440px; --r:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--body);font-size:18px;line-height:1.55;color:var(--text);background:var(--bg);min-height:100vh;display:flex;flex-direction:column}
+button,input,textarea{font:inherit;color:inherit}
+input,textarea{font-size:18px}
+button{cursor:pointer;border:0;background:none}
+button:disabled{cursor:not-allowed;opacity:.55}
+:focus-visible{outline:3px solid var(--blu2);outline-offset:2px}
+.nascosto{display:none!important}
+.ico{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+h1,h2,h3{font-family:var(--head);font-weight:600;line-height:1.25}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;width:100%}
+
+/* ── Pulsanti ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 20px;border-radius:10px;font-family:var(--head);font-weight:500;font-size:16px;transition:background .15s,border-color .15s,transform .05s;white-space:nowrap}
+.btn:active:not(:disabled){transform:translateY(1px)}
+.btn-pri{background:var(--blu);color:#fff}
+.btn-pri:hover:not(:disabled){background:var(--bluD)}
+.btn-sec{background:var(--card);color:var(--blu);border:1.5px solid var(--brd2)}
+.btn-sec:hover:not(:disabled){border-color:var(--blu);background:var(--bluLL)}
+.btn-amb{background:var(--card);color:var(--ambra);border:1.5px solid var(--ambraB)}
+.btn-amb:hover:not(:disabled){background:var(--ambraL)}
+.btn-amb-pieno{background:var(--ambra);color:#fff}
+.btn-amb-pieno:hover:not(:disabled){background:#7d5700}
+.btn-chiaro{color:#fff;border:1.5px solid rgba(255,255,255,.35);padding:8px 14px;font-size:15px}
+.btn-chiaro:hover{background:rgba(255,255,255,.12)}
+.spin{width:18px;height:18px;border:2.5px solid currentColor;border-right-color:transparent;border-radius:50%;animation:gira .7s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+
+/* ── Accesso ── */
+#accesso{flex:1;display:flex;align-items:center;justify-content:center;padding:32px 16px;background:linear-gradient(160deg,var(--bluD) 0%,var(--blu) 55%,var(--blu2) 100%)}
+.acc-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow2);padding:44px 44px 36px;width:100%;max-width:460px}
+.acc-logo{width:56px;height:56px;border-radius:14px;background:var(--bluL);color:var(--blu);display:flex;align-items:center;justify-content:center;margin-bottom:22px}
+.acc-logo .ico{width:30px;height:30px}
+.acc-card h1{font-size:30px;color:var(--blu);margin-bottom:4px}
+.acc-sub{color:var(--muted);margin-bottom:30px}
+.campo{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+.campo label{font-weight:700;font-size:16px}
+.campo .aiuto{font-size:14px;color:var(--muted)}
+.inp{width:100%;padding:12px 14px;border:1.5px solid var(--brd2);border-radius:10px;background:#fff;transition:border-color .15s,box-shadow .15s}
+.inp:focus{outline:0;border-color:var(--blu);box-shadow:0 0 0 3px var(--bluL)}
+.inp.invalido{border-color:var(--ambraB);box-shadow:0 0 0 3px var(--ambraL)}
+textarea.inp{resize:vertical;min-height:84px;line-height:1.45}
+.pw-box{position:relative}
+.pw-box .inp{padding-right:52px}
+.pw-occhio{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:8px;color:var(--muted);display:flex;align-items:center;justify-content:center}
+.pw-occhio:hover{background:var(--bluLL);color:var(--blu)}
+.acc-card .btn-pri{width:100%;padding:14px;font-size:17px}
+.avviso{display:flex;gap:10px;align-items:flex-start;background:var(--ambraL);border:1px solid #EBD6A0;color:#6B4B00;border-radius:10px;padding:11px 14px;font-size:16px;margin-bottom:16px}
+.avviso .ico{margin-top:2px}
+.acc-piede{margin-top:26px;font-size:14px;color:var(--light);text-align:center}
+.demo-tag{display:inline-block;margin-top:10px;font-size:13px;font-family:var(--head);color:var(--ambra);background:var(--ambraL);padding:3px 10px;border-radius:99px}
+
+/* ── Barra superiore ── */
+header.top{background:var(--blu);color:#fff;position:sticky;top:0;z-index:30;box-shadow:0 2px 10px rgba(11,42,102,.25)}
+.top-in{display:flex;align-items:center;gap:18px;min-height:68px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+.marchio{display:flex;align-items:center;gap:12px;margin-right:auto;min-width:0}
+.marchio-ico{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;flex:none}
+.marchio h1{font-size:20px;font-weight:600;color:#fff}
+.marchio small{display:block;font-size:13px;opacity:.78;font-family:var(--body)}
+.ruolo{font-family:var(--head);font-size:13px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;background:rgba(255,255,255,.16);padding:5px 12px;border-radius:99px}
+.ruolo.demo{background:var(--ambraL);color:var(--ambra)}
+.seg-vista{display:flex;background:rgba(255,255,255,.12);border-radius:10px;padding:3px}
+.seg-vista button{color:#fff;padding:7px 16px;border-radius:8px;font-family:var(--head);font-size:15px;display:flex;gap:7px;align-items:center}
+.seg-vista button[aria-pressed="true"]{background:#fff;color:var(--blu)}
+.agg{display:flex;align-items:center;gap:10px}
+.agg-ora{font-size:13px;opacity:.75;white-space:nowrap}
+
+/* ── Banner ── */
+.banner{display:flex;align-items:center;gap:12px;background:var(--ambraL);border-bottom:1px solid #EBD6A0;color:#6B4B00;padding:10px 0}
+.banner .wrap{display:flex;align-items:center;gap:12px}
+.banner p{flex:1;font-size:16px}
+.banner-sposta{background:#E6EEFC;border-bottom:1px solid #C3D3F2;color:var(--bluD)}
+
+/* ── Contenuto ── */
+main{flex:1;padding:24px 0 40px}
+.pillole{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 12px;scrollbar-width:thin}
+.pill{flex:none;min-width:104px;background:var(--card);border:1.5px solid var(--brd);border-radius:12px;padding:9px 14px 10px;text-align:left;display:flex;flex-direction:column;gap:1px;transition:border-color .15s,box-shadow .15s;position:relative}
+.pill:hover{border-color:var(--brd2);box-shadow:var(--shadow)}
+.pill .p-gg{font-size:13px;color:var(--muted);font-family:var(--head)}
+.pill .p-num{font-family:var(--head);font-size:22px;font-weight:600;line-height:1.1}
+.pill .p-conta{font-size:13px;color:var(--muted)}
+.pill.sel{background:var(--blu);border-color:var(--blu);color:#fff;box-shadow:0 4px 14px rgba(18,62,144,.28)}
+.pill.sel .p-gg,.pill.sel .p-conta{color:rgba(255,255,255,.82)}
+.pill.passata:not(.sel){opacity:.62}
+.pill.dc{border-style:dashed;border-color:var(--ambraB)}
+.pill.dc .p-conta{color:var(--ambra)}
+.pill.sel.dc .p-conta{color:#FFE2A0}
+.pill.prossima::after{content:"";position:absolute;top:9px;right:10px;width:8px;height:8px;border-radius:50%;background:var(--verde)}
+
+.riep{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 18px;margin:10px 0 18px}
+.riep h2{font-size:26px;color:var(--blu);margin-right:6px}
+.riep .r-voce{display:inline-flex;align-items:center;gap:7px;font-size:16px;color:var(--muted)}
+.riep .r-voce b{color:var(--text)}
+.pallino{width:10px;height:10px;border-radius:50%;display:inline-block}
+.pallino.attesa{background:var(--attesa)} .pallino.eseguito{background:var(--verde)} .pallino.assente{background:var(--ambraB)}
+.riep .r-dc{color:var(--ambra);font-weight:700;font-size:16px}
+
+/* Vista Giorno */
+.giorno{display:flex;flex-direction:column;gap:12px}
+.riga{display:grid;grid-template-columns:150px 1fr auto;align-items:center;gap:20px;background:var(--card);border:1.5px solid var(--brd);border-left-width:6px;border-radius:var(--r);padding:16px 22px;min-height:96px;text-align:left;width:100%;transition:border-color .15s,box-shadow .15s,background .15s}
+.riga.cliccabile:hover{box-shadow:var(--shadow);border-color:var(--brd2)}
+.riga.s-attesa{border-left-color:var(--attesa)}
+.riga.s-eseguito{border-left-color:var(--verde);background:linear-gradient(90deg,var(--verdeL),var(--card) 40%)}
+.riga.s-assente{border-left-color:var(--ambraB);background:linear-gradient(90deg,var(--ambraL),var(--card) 40%)}
+.riga.libera{border-style:dashed;border-left-style:solid;border-left-color:var(--brd);background:transparent}
+.riga.libera.cliccabile:hover{background:var(--card);border-color:var(--blu);border-left-color:var(--blu)}
+.ora{font-family:var(--head);font-size:22px;font-weight:600;color:var(--blu);line-height:1.15}
+.ora small{display:block;font-size:14px;font-weight:400;color:var(--muted)}
+.chi{min-width:0}
+.chi-nome{font-family:var(--head);font-size:21px;font-weight:600;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.classe{font-family:var(--head);font-size:14px;font-weight:500;background:var(--bluL);color:var(--blu);padding:2px 10px;border-radius:99px}
+.chi-meta{font-size:15px;color:var(--muted);margin-top:2px}
+.chi-nota{font-size:15px;color:var(--text);margin-top:6px;font-style:italic;display:flex;gap:7px;align-items:flex-start}
+.chi-nota .ico{width:16px;height:16px;margin-top:3px;color:var(--light)}
+.libero-txt{display:flex;align-items:center;gap:10px;color:var(--light);font-size:17px}
+.riga.cliccabile .libero-txt{color:var(--blu)}
+.riga.target{border-color:var(--blu);border-style:solid;background:#EAF0FC;animation:pulsa 1.4s ease-in-out infinite}
+@keyframes pulsa{50%{box-shadow:0 0 0 4px rgba(18,62,144,.14)}}
+.in-sposta{outline:3px dashed var(--blu);outline-offset:3px}
+.badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--head);font-size:14px;font-weight:500;padding:5px 12px;border-radius:99px;white-space:nowrap}
+.badge .ico{width:16px;height:16px}
+.badge.attesa{background:var(--attesaL);color:var(--attesa)}
+.badge.eseguito{background:var(--verdeL);color:var(--verde)}
+.badge.assente{background:var(--ambraL);color:var(--ambra)}
+
+/* Controllo stato */
+.seg-stato{display:inline-flex;border:1.5px solid var(--brd2);border-radius:10px;overflow:hidden;background:var(--card)}
+.seg-stato button{display:flex;align-items:center;gap:7px;padding:9px 14px;font-family:var(--head);font-size:15px;color:var(--muted);border-right:1.5px solid var(--brd)}
+.seg-stato button:last-child{border-right:0}
+.seg-stato button:hover:not([aria-pressed="true"]){background:var(--bluLL)}
+.seg-stato button .ico{width:17px;height:17px}
+.seg-stato button[aria-pressed="true"][data-stato="in attesa"]{background:var(--attesa);color:#fff}
+.seg-stato button[aria-pressed="true"][data-stato="eseguito"]{background:var(--verde);color:#fff}
+.seg-stato button[aria-pressed="true"][data-stato="assente"]{background:var(--ambra);color:#fff}
+
+/* Vista Stagione */
+.stagione-box{overflow-x:auto;background:var(--card);border:1.5px solid var(--brd);border-radius:var(--r);box-shadow:var(--shadow)}
+table.griglia{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed;min-width:980px}
+.griglia th,.griglia td{border-bottom:1px solid var(--brd);border-right:1px solid var(--brd);padding:0;vertical-align:top}
+.griglia tr>*:last-child{border-right:0}
+.griglia tbody tr:last-child>*{border-bottom:0}
+.griglia thead th{background:var(--bluLL);padding:0}
+.griglia thead th.col-ora{width:96px}
+.th-data{display:block;width:100%;padding:10px 10px 9px;text-align:center;font-family:var(--head)}
+.th-data .gg{font-size:12px;color:var(--muted);display:block}
+.th-data .num{font-size:17px;font-weight:600;color:var(--text)}
+.th-data .cnt{font-size:12px;color:var(--muted);display:block}
+.th-data:hover{background:var(--bluL)}
+th.col-sel{background:var(--blu)!important}
+th.col-sel .th-data .gg,th.col-sel .th-data .num,th.col-sel .th-data .cnt{color:#fff}
+th.col-dc .th-data .cnt{color:var(--ambra)}
+th.col-sel.col-dc .th-data .cnt{color:#FFE2A0}
+td.col-sel{background:var(--bluLL)}
+th.col-pass:not(.col-sel),td.col-pass:not(.col-sel){opacity:.7}
+.griglia tbody th{font-family:var(--head);font-weight:600;color:var(--blu);font-size:16px;padding:12px 8px;text-align:center;background:var(--bluLL)}
+.griglia tbody th small{display:block;font-weight:400;font-size:12px;color:var(--muted)}
+.cella{display:block;width:100%;min-height:78px;height:100%;padding:8px 10px;text-align:left;border-left:5px solid transparent;font-size:15px;line-height:1.3}
+.cella.cliccabile:hover{background:var(--bluL)}
+.cella .c-nome{font-family:var(--head);font-weight:600;font-size:15px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cella .c-meta{font-size:13px;color:var(--muted);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cella.s-attesa{border-left-color:var(--attesa)}
+.cella.s-eseguito{border-left-color:var(--verde);background:var(--verdeL)}
+.cella.s-assente{border-left-color:var(--ambraB);background:var(--ambraL)}
+.cella.libera{color:var(--light);font-size:13px;display:flex;align-items:center;justify-content:center}
+.cella.libera.cliccabile{color:var(--blu)}
+.cella.libera .ico{width:18px;height:18px;opacity:0;transition:opacity .15s}
+.cella.libera.cliccabile:hover .ico{opacity:1}
+.cella.dc{background:repeating-linear-gradient(135deg,transparent 0 8px,rgba(201,154,30,.08) 8px 16px)}
+.cella.target{background:#E2EBFB;box-shadow:inset 0 0 0 2px var(--blu)}
+.cella.target .ico{opacity:1}
+
+.legenda{display:flex;gap:20px;flex-wrap:wrap;margin-top:14px;font-size:14px;color:var(--muted)}
+.legenda span{display:inline-flex;align-items:center;gap:7px}
+
+/* ── Pannello laterale ── */
+.velo{position:fixed;inset:0;background:rgba(11,42,102,.32);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s}
+.velo.aperto{opacity:1;pointer-events:auto}
+aside.pannello{position:fixed;top:0;right:0;bottom:0;width:460px;max-width:100%;background:var(--card);z-index:41;box-shadow:var(--shadow2);transform:translateX(100%);transition:transform .25s ease;display:flex;flex-direction:column}
+aside.pannello.aperto{transform:none}
+.pan-testa{display:flex;align-items:flex-start;gap:12px;padding:22px 24px 16px;border-bottom:1px solid var(--brd)}
+.pan-testa h2{font-size:22px;color:var(--blu)}
+.pan-testa p{font-size:15px;color:var(--muted)}
+.pan-chiudi{margin-left:auto;width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted);flex:none}
+.pan-chiudi:hover{background:var(--bluLL);color:var(--blu)}
+.pan-corpo{padding:22px 24px;overflow-y:auto;flex:1}
+.pan-piede{padding:16px 24px 22px;border-top:1px solid var(--brd);display:flex;flex-wrap:wrap;gap:10px}
+.pan-piede .btn-pri{flex:1 1 100%}
+.pan-piede .btn-sec,.pan-piede .btn-amb{flex:1 1 0}
+.conta{font-size:13px;color:var(--light);text-align:right}
+.conta.vicino{color:var(--ambra)}
+.nota-priv{display:flex;gap:8px;font-size:14px;color:var(--muted);background:var(--bluLL);border-radius:8px;padding:8px 10px;margin-top:2px}
+.nota-priv .ico{width:16px;height:16px;margin-top:2px;color:var(--blu)}
+.err-campo{font-size:14px;color:var(--ambra);display:none}
+.invalido+.err-campo,.invalido~.err-campo{display:block}
+.dett{display:grid;grid-template-columns:110px 1fr;gap:10px 14px;font-size:17px;margin-bottom:24px}
+.dett dt{color:var(--muted);font-size:15px;padding-top:2px}
+.dett dd{font-weight:700;word-break:break-word}
+.dett dd.n{font-weight:400;font-style:italic}
+.dett-tit{font-family:var(--head);font-size:15px;color:var(--muted);margin-bottom:10px}
+
+/* ── Dialogo ── */
+.dialogo-velo{position:fixed;inset:0;background:rgba(11,42,102,.4);z-index:60;display:flex;align-items:center;justify-content:center;padding:16px}
+.dialogo{background:var(--card);border-radius:16px;box-shadow:var(--shadow2);max-width:440px;width:100%;padding:28px}
+.dialogo h3{font-size:21px;margin-bottom:8px;color:var(--text)}
+.dialogo p{color:var(--muted);margin-bottom:22px}
+.dialogo .azioni{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+
+/* ── Notifiche ── */
+.toasts{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:70;display:flex;flex-direction:column;gap:8px;align-items:center;width:calc(100% - 32px);max-width:560px;pointer-events:none}
+.toast{display:flex;gap:10px;align-items:center;padding:12px 18px;border-radius:12px;box-shadow:var(--shadow2);font-size:16px;background:var(--bluD);color:#fff;animation:entra .2s ease;pointer-events:auto}
+.toast.ambra{background:#5E4200}
+.toast.verde{background:#145C35}
+@keyframes entra{from{opacity:0;transform:translateY(8px)}}
+
+footer{padding:18px 0 24px;color:var(--light);font-size:14px;text-align:center}
+.vuoto{padding:60px 20px;text-align:center;color:var(--muted)}
+
+/* ── Responsive ── */
+@media (max-width:899px){
+  .wrap{padding:0 16px}
+  .seg-vista{display:none}
+  .top-in{gap:8px 10px;min-height:60px}
+  .marchio{flex:1 0 auto;order:1}
+  .marchio h1{white-space:nowrap}
+  .marchio-ico{display:none}
+  .agg{order:2}
+  .ruolo{order:3;font-size:11px;padding:3px 9px}
+  .marchio h1{font-size:18px}
+  .marchio small{display:none}
+  .agg-ora{display:none}
+  .btn-chiaro .lbl{display:none}
+  main{padding-top:16px}
+  .riep h2{font-size:21px;flex-basis:100%}
+  .riga{grid-template-columns:1fr;gap:10px;padding:14px 16px;min-height:0}
+  .ora{font-size:19px;display:flex;align-items:baseline;gap:8px}
+  .ora small{display:inline}
+  .seg-stato{width:100%}
+  .seg-stato button{flex:1;justify-content:center;padding:10px 6px;font-size:14px}
+  aside.pannello{width:100%}
+  .acc-card{padding:32px 22px 28px}
+  .dett{grid-template-columns:90px 1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- Icone SVG (riusate con <use>) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-cuore" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/><path d="M8.5 11h2l1-2 1.5 4 1-2h1.5"/></symbol>
+    <symbol id="i-lucchetto" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="i-occhio" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-avviso" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5"/><path d="M12 16.5h.01"/></symbol>
+    <symbol id="i-aggiorna" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0 0 14.3 4.9L20 16"/><path d="M20 20v-4h-4"/></symbol>
+    <symbol id="i-esci" viewBox="0 0 24 24"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3"/><path d="M10 17l-5-5 5-5"/><path d="M5 12h11"/></symbol>
+    <symbol id="i-giorno" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/><path d="M8 14h8M8 17h5"/></symbol>
+    <symbol id="i-griglia" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="2"/><path d="M3.5 9.5h17M3.5 15h17M9.5 3.5v17M15 3.5v17"/></symbol>
+    <symbol id="i-piu" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-chiudi" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-orologio" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-spunta" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.8"/></symbol>
+    <symbol id="i-assente" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></symbol>
+    <symbol id="i-sposta" viewBox="0 0 24 24"><path d="M5 9h14l-4-4"/><path d="M19 15H5l4 4"/></symbol>
+    <symbol id="i-cestino" viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M9 7V4.5h6V7"/><path d="M6.5 7l1 13h9l1-13"/></symbol>
+    <symbol id="i-nota" viewBox="0 0 24 24"><path d="M5 4h14v11l-5 5H5z"/><path d="M14 20v-5h5"/></symbol>
+    <symbol id="i-scudo" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6z"/></symbol>
+  </defs>
+</svg>
+
+<!-- ═════════ Accesso ═════════ -->
+<section id="accesso" class="nascosto">
+  <form class="acc-card" id="form-accesso" novalidate>
+    <div class="acc-logo"><svg class="ico"><use href="#i-cuore"/></svg></div>
+    <h1>Sportello benessere</h1>
+    <p class="acc-sub">Scuola Sacra Famiglia · Orzinuovi</p>
+    <div id="acc-avviso" class="avviso nascosto" role="alert"><svg class="ico"><use href="#i-avviso"/></svg><span></span></div>
+    <div class="campo">
+      <label for="pw">Password</label>
+      <div class="pw-box">
+        <input class="inp" id="pw" type="password" autocomplete="current-password" required>
+        <button type="button" class="pw-occhio" id="pw-mostra" aria-label="Mostra password"><svg class="ico"><use href="#i-occhio"/></svg></button>
+      </div>
+      <span class="aiuto">Docenti e visualizzatore hanno password diverse: è la password a stabilire il tipo di accesso.</span>
+    </div>
+    <button class="btn btn-pri" id="acc-entra" type="submit"><svg class="ico"><use href="#i-lucchetto"/></svg><span>Entra</span></button>
+    <p class="acc-piede">Accesso riservato. Chiudendo la scheda esci automaticamente.<br><span id="acc-demo" class="demo-tag nascosto">Modalità demo: dati di prova</span></p>
+  </form>
+</section>
+
+<!-- ═════════ App ═════════ -->
+<div id="app" class="nascosto" style="display:flex;flex-direction:column;flex:1">
+  <header class="top">
+    <div class="wrap top-in">
+      <div class="marchio">
+        <div class="marchio-ico"><svg class="ico"><use href="#i-cuore"/></svg></div>
+        <div><h1>Sportello benessere</h1><small>Scuola Sacra Famiglia · Orzinuovi</small></div>
+      </div>
+      <span class="ruolo" id="ruolo"></span>
+      <span class="ruolo demo nascosto" id="ruolo-demo">Demo</span>
+      <div class="seg-vista" role="group" aria-label="Vista">
+        <button type="button" data-vista="giorno" aria-pressed="true"><svg class="ico"><use href="#i-giorno"/></svg>Giorno</button>
+        <button type="button" data-vista="stagione" aria-pressed="false"><svg class="ico"><use href="#i-griglia"/></svg>Stagione</button>
+      </div>
+      <div class="agg">
+        <span class="agg-ora" id="agg-ora"></span>
+        <button class="btn btn-chiaro" id="btn-aggiorna" type="button" title="Aggiorna"><svg class="ico"><use href="#i-aggiorna"/></svg><span class="lbl">Aggiorna</span></button>
+        <button class="btn btn-chiaro" id="btn-esci" type="button" title="Esci"><svg class="ico"><use href="#i-esci"/></svg><span class="lbl">Esci</span></button>
+      </div>
+    </div>
+  </header>
+
+  <div id="banner-rete" class="banner nascosto" role="alert">
+    <div class="wrap"><svg class="ico"><use href="#i-avviso"/></svg><p></p><button class="btn btn-amb" type="button" id="btn-riprova">Riprova</button></div>
+  </div>
+  <div id="banner-sposta" class="banner banner-sposta nascosto" role="status">
+    <div class="wrap"><svg class="ico"><use href="#i-sposta"/></svg><p></p><button class="btn btn-sec" type="button" id="btn-sposta-annulla">Annulla spostamento</button></div>
+  </div>
+
+  <main>
+    <div class="wrap">
+      <nav class="pillole" id="pillole" aria-label="Date"></nav>
+      <div class="riep" id="riep"></div>
+      <div id="vista"></div>
+    </div>
+  </main>
+  <footer><div class="wrap">Scuola Sacra Famiglia · Orzinuovi</div></footer>
+</div>
+
+<div class="velo" id="velo"></div>
+<aside class="pannello" id="pannello" aria-hidden="true" role="dialog" aria-labelledby="pan-titolo"></aside>
+<div id="dialogo-host"></div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script>
+'use strict';
+/* ═══════════════════════════════════════════════════════════════
+   CONFIGURAZIONE
+   API_URL: URL "/exec" della Web App Apps Script (vedi README).
+   Vuoto = modalità demo con dati di prova in memoria.
+   ═══════════════════════════════════════════════════════════════ */
+const API_URL = 'https://script.google.com/macros/s/AKfycbwxnO0j5NFwn4lldsmpeXCTwMOnEK63beLnEPu_H1g6G69EfNRPnC25_0R4-HWfikwl/exec';
+
+// Derivazione della chiave: identica a tools/genera-password.mjs.
+// Il server riceve solo la chiave derivata e ne confronta lo SHA-256:
+// la password in chiaro non lascia mai il browser.
+const SALT = 'sportello-benessere|sacrafamiglia|orzinuovi';
+const ITER = 210000;
+const POLL_MS = 60000;
+const LIMITI = { studente: 60, classe: 10, docente: 60, nota: 120 };
+const STATI = ['in attesa', 'eseguito', 'assente'];
+const DEMO = !API_URL;
+
+async function derivaChiave(password) {
+  const enc = new TextEncoder();
+  const base = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveBits']);
+  const bits = await crypto.subtle.deriveBits(
+    { name: 'PBKDF2', salt: enc.encode(SALT), iterations: ITER, hash: 'SHA-256' }, base, 256);
+  return Array.from(new Uint8Array(bits), b => b.toString(16).padStart(2, '0')).join('');
+}
+
+/* ═════════ Livello API ═════════ */
+// POST text/plain: è una "richiesta semplice", quindi niente preflight CORS
+// (Apps Script non lo gestisce). La redirect verso googleusercontent è seguita da fetch.
+async function api(azione, dati) {
+  const corpo = Object.assign({ azione, chiave: S.chiave }, dati || {});
+  if (DEMO) return Demo.gestisci(corpo);
+  let r;
+  try {
+    r = await fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(corpo), redirect: 'follow' });
+  } catch (e) {
+    return { ok: false, codice: 'rete', messaggio: 'Connessione non riuscita. Controlla la rete.' };
+  }
+  if (!r.ok) return { ok: false, codice: 'rete', messaggio: 'Il server non risponde (' + r.status + ').' };
+  try { return await r.json(); }
+  catch (e) { return { ok: false, codice: 'server', messaggio: 'Risposta non valida dal server.' }; }
+}
+
+/* ═════════ Backend demo (stesse regole e codici di apps-script.gs) ═════════
+   Password demo: vedi README. window.demoConflitto = true simula un collega che
+   prenota lo stesso slot un istante prima. */
+const Demo = (() => {
+  const SLOT = ['09:00', '09:40', '10:20', '11:00', '11:40', '12:20'];
+  const fine = s => { const m = +s.slice(0, 2) * 60 + +s.slice(3) + 40; return String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0'); };
+  const date = ['2026-10-26', '2026-11-30', '2027-01-25', '2027-02-22', '2027-03-22', '2027-04-26', '2027-05-24']
+    .map(d => ({ data: d, prenotabile: true })).concat([{ data: '2026-12-14', prenotabile: false }])
+    .sort((a, b) => a.data < b.data ? -1 : 1);
+  const ts = new Date().toISOString();
+  let n = 0;
+  const p = (data, slot, studente, classe, docente, nota, stato) => ({ id: 'demo-' + (++n), data, slot, studente, classe, docente, nota, stato: stato || 'in attesa', creato: ts, modificato: ts });
+  let pren = [
+    p('2026-10-26', '09:00', 'Giulia Ferrari', '3A', 'Prof.ssa Rinaldi', ''),
+    p('2026-10-26', '09:40', 'Matteo Colombo', '2B', 'Prof. Bertoli', 'Esce dalla lezione di tecnologia'),
+    p('2026-10-26', '11:00', 'Sofia Ricci', '1C', 'Prof.ssa Rinaldi', ''),
+    p('2026-10-26', '11:40', 'Luca Marini', '5A prim.', 'Maestra Pini', 'Accompagnato dalla maestra'),
+    p('2026-11-30', '10:20', 'Alessandro Galli', '3B', 'Prof. Bertoli', ''),
+  ];
+  let chiavi = null;
+  const err = (codice, messaggio) => ({ ok: false, codice, messaggio });
+  const copia = o => JSON.parse(JSON.stringify(o));
+  const campiTesto = req => {
+    const out = {};
+    for (const k in LIMITI) {
+      const v = String(req[k] == null ? '' : req[k]).replace(/\s+/g, ' ').trim();
+      if (v.length > LIMITI[k]) return null;
+      if (k !== 'nota' && !v) return null;
+      out[k] = v;
+    }
+    return out;
+  };
+  const verificaPosto = (data, slot, escludi) => {
+    if (!SLOT.includes(slot)) return err('slot_non_valido', 'Orario non valido');
+    const d = date.find(x => x.data === data);
+    if (!d || !d.prenotabile) return err('data_non_valida', 'Data non prenotabile');
+    if (window.demoConflitto) {
+      window.demoConflitto = false;
+      pren.push(p(data, slot, 'Prenotato da un collega', '2A', 'Prof. Collega', ''));
+    }
+    if (pren.some(x => x.data === data && x.slot === slot && x.id !== escludi)) return err('occupato', 'Slot appena prenotato da un collega');
+    return null;
+  };
+  const permessi = { elenco: ['docente', 'visualizzatore'], prenota: ['docente'], modifica: ['docente'], sposta: ['docente'], annulla: ['docente'], stato: ['visualizzatore'] };
+
+  async function gestisci(req) {
+    await new Promise(r => setTimeout(r, 300));
+    if (!chiavi) chiavi = { docente: await derivaChiave('docente-demo'), visualizzatore: await derivaChiave('visualizzatore-demo') };
+    const ruolo = req.chiave === chiavi.docente ? 'docente' : req.chiave === chiavi.visualizzatore ? 'visualizzatore' : null;
+    if (!ruolo) return err('password', 'Password non corretta');
+    if (!permessi[req.azione]) return err('server', 'Azione sconosciuta');
+    if (!permessi[req.azione].includes(ruolo)) return err('ruolo', 'Operazione non consentita');
+    const ora = new Date().toISOString();
+    const trova = id => pren.find(x => x.id === id);
+    switch (req.azione) {
+      case 'elenco':
+        return copia({ ok: true, ruolo, slot: SLOT.map(s => ({ inizio: s, fine: fine(s) })), date, prenotazioni: pren });
+      case 'prenota': {
+        const c = campiTesto(req); if (!c) return err('campi', 'Controlla i campi obbligatori e la lunghezza');
+        const e = verificaPosto(req.data, req.slot, null); if (e) return e;
+        const nuova = Object.assign(p(req.data, req.slot, c.studente, c.classe, c.docente, c.nota), { creato: ora, modificato: ora });
+        pren.push(nuova);
+        return copia({ ok: true, prenotazione: nuova });
+      }
+      case 'modifica': {
+        const c = campiTesto(req); if (!c) return err('campi', 'Controlla i campi obbligatori e la lunghezza');
+        const x = trova(req.id); if (!x) return err('non_trovata', 'Prenotazione annullata da un collega');
+        Object.assign(x, c, { modificato: ora });
+        return { ok: true };
+      }
+      case 'sposta': {
+        const x = trova(req.id); if (!x) return err('non_trovata', 'Prenotazione annullata da un collega');
+        if (x.data === req.data && x.slot === req.slot) return { ok: true };
+        const e = verificaPosto(req.data, req.slot, x.id); if (e) return e;
+        Object.assign(x, { data: req.data, slot: req.slot, stato: 'in attesa', modificato: ora });
+        return { ok: true };
+      }
+      case 'annulla': {
+        const k = pren.length; pren = pren.filter(x => x.id !== req.id);
+        return pren.length < k ? { ok: true } : err('non_trovata', 'Prenotazione annullata da un collega');
+      }
+      case 'stato': {
+        if (!STATI.includes(req.stato)) return err('campi', 'Stato non valido');
+        const x = trova(req.id); if (!x) return err('non_trovata', 'Prenotazione annullata da un collega');
+        Object.assign(x, { stato: req.stato, modificato: ora });
+        return { ok: true };
+      }
+    }
+  }
+  return { gestisci };
+})();
+
+/* ═════════ Stato ═════════ */
+const S = {
+  chiave: null, ruolo: null,
+  slot: [], date: [], pren: [],
+  dataSel: null, vista: 'giorno',
+  pannello: null,      // {tipo:'nuova', data, slot} | {tipo:'esistente', id}
+  sposta: null,        // id della prenotazione in spostamento
+  bozza: null,         // dati di una prenotazione rifiutata per conflitto, da riproporre
+  caricato: false, ultimoAgg: null, inCorso: false,
+};
+
+/* ═════════ Utilità ═════════ */
+const $ = sel => document.querySelector(sel);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const ico = (id, cls) => `<svg class="ico${cls ? ' ' + cls : ''}" aria-hidden="true"><use href="#i-${id}"/></svg>`;
+const GG = ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
+const MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+const aData = iso => { const [y, m, d] = iso.split('-').map(Number); return new Date(y, m - 1, d); };
+const fmtLungo = iso => { const d = aData(iso); return `${GG[d.getDay()]} ${d.getDate()} ${MESI[d.getMonth()]} ${d.getFullYear()}`; };
+const fmtCorto = iso => { const d = aData(iso); return `${GG[d.getDay()].slice(0, 3)} ${d.getDate()} ${MESI[d.getMonth()].slice(0, 3)}`; };
+const oggiISO = () => new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Rome' }).format(new Date());
+const memo = {
+  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* storage non disponibile */ } },
+};
+const sessione = {
+  get() { try { return sessionStorage.getItem('sb_chiave'); } catch (e) { return null; } },
+  set(v) { try { sessionStorage.setItem('sb_chiave', v); } catch (e) { /* solo in memoria */ } },
+  del() { try { sessionStorage.removeItem('sb_chiave'); } catch (e) { /* niente */ } },
+};
+const ICO_STATO = { 'in attesa': 'orologio', eseguito: 'spunta', assente: 'assente' };
+const CLS_STATO = { 'in attesa': 'attesa', eseguito: 'eseguito', assente: 'assente' };
+const LBL_STATO = { 'in attesa': 'In attesa', eseguito: 'Eseguito', assente: 'Assente' };
+
+const isDocente = () => S.ruolo === 'docente';
+const dataInfo = iso => S.date.find(d => d.data === iso);
+const prenDi = (data, slot) => S.pren.find(p => p.data === data && p.slot === slot);
+const slotInfo = inizio => S.slot.find(s => s.inizio === inizio) || { inizio, fine: '' };
+const fmtOra = s => s.replace(':', '.');
+const mobile = () => window.matchMedia('(max-width: 899px)').matches;
+
+/* ═════════ Notifiche ═════════ */
+function toast(testo, tipo) {
+  const el = document.createElement('div');
+  el.className = 'toast' + (tipo ? ' ' + tipo : '');
+  el.innerHTML = ico(tipo === 'verde' ? 'spunta' : tipo === 'ambra' ? 'avviso' : 'avviso') + `<span>${esc(testo)}</span>`;
+  $('#toasts').appendChild(el);
+  setTimeout(() => el.remove(), tipo === 'ambra' ? 5500 : 3200);
+}
+let riprova = null;
+function bannerRete(msg, fn) {
+  riprova = fn;
+  $('#banner-rete p').textContent = msg + ' Le modifiche non salvate restano dove sono.';
+  $('#banner-rete').classList.remove('nascosto');
+}
+function nascondiBanner() { $('#banner-rete').classList.add('nascosto'); riprova = null; }
+
+// Gestione centralizzata degli esiti negativi del server.
+function gestisciErrore(r, retry) {
+  switch (r.codice) {
+    case 'password':
+      esci('La password non è più valida: accedi di nuovo.'); break;
+    case 'bloccato':
+      toast('Troppi tentativi: riprova tra qualche minuto.', 'ambra'); break;
+    case 'occupato':
+      // Nuova prenotazione: si conservano i dati inseriti e si riapriranno sul prossimo slot scelto.
+      if (S.pannello && S.pannello.tipo === 'nuova') {
+        S.bozza = {};
+        ['studente', 'classe', 'docente', 'nota'].forEach(k => { const i = $('#f-' + k); if (i) S.bozza[k] = i.value; });
+        chiudiPannello(true);
+        toast('Slot appena prenotato da un collega: scegline un altro, i dati inseriti restano.', 'ambra');
+      } else {
+        toast('Slot appena prenotato da un collega: scegline un altro.', 'ambra');
+      }
+      carica(true); break;
+    case 'non_trovata':
+      toast('Prenotazione annullata da un collega.', 'ambra'); chiudiPannello(); annullaSposta(); carica(true); break;
+    case 'rete': case 'server':
+      bannerRete(r.messaggio || 'Errore del server.', retry); break;
+    default:
+      toast(r.messaggio || 'Operazione non riuscita.', 'ambra');
+  }
+}
+
+/* ═════════ Accesso ═════════ */
+function mostraAccesso(avviso) {
+  $('#app').classList.add('nascosto');
+  $('#accesso').classList.remove('nascosto');
+  $('#acc-demo').classList.toggle('nascosto', !DEMO);
+  const box = $('#acc-avviso');
+  box.classList.toggle('nascosto', !avviso);
+  if (avviso) box.querySelector('span').textContent = avviso;
+  setTimeout(() => $('#pw').focus(), 50);
+}
+
+$('#pw-mostra').addEventListener('click', () => {
+  const i = $('#pw'); i.type = i.type === 'password' ? 'text' : 'password';
+  $('#pw-mostra').setAttribute('aria-label', i.type === 'password' ? 'Mostra password' : 'Nascondi password');
+});
+
+$('#form-accesso').addEventListener('submit', async e => {
+  e.preventDefault();
+  const pw = $('#pw').value.trim();
+  const btn = $('#acc-entra');
+  const avviso = t => { const b = $('#acc-avviso'); b.classList.remove('nascosto'); b.querySelector('span').textContent = t; $('#pw').classList.add('invalido'); };
+  if (!pw) { avviso('Inserisci la password.'); return; }
+  btn.disabled = true; btn.innerHTML = '<span class="spin"></span><span>Verifica…</span>';
+  try {
+    S.chiave = await derivaChiave(pw);
+    const r = await api('elenco');
+    if (r.ok) {
+      sessione.set(S.chiave);
+      $('#pw').value = ''; $('#pw').classList.remove('invalido');
+      avviaApp(r);
+    } else {
+      S.chiave = null;
+      avviso(r.codice === 'password' ? 'Password non corretta.' : r.codice === 'bloccato' ? 'Troppi tentativi errati: riprova tra qualche minuto.' : (r.messaggio || 'Accesso non riuscito.'));
+    }
+  } catch (err) {
+    S.chiave = null;
+    avviso('Questo browser non supporta la cifratura richiesta. Prova con Chrome, Safari o Edge aggiornati.');
+  } finally {
+    btn.disabled = false; btn.innerHTML = ico('lucchetto') + '<span>Entra</span>';
+  }
+});
+$('#pw').addEventListener('input', () => $('#pw').classList.remove('invalido'));
+
+function esci(avviso) {
+  sessione.del();
+  Object.assign(S, { chiave: null, ruolo: null, pren: [], date: [], slot: [], caricato: false, sposta: null, bozza: null, dataSel: null });
+  chiudiPannello(true);
+  $('#banner-sposta').classList.add('nascosto');
+  nascondiBanner();
+  mostraAccesso(avviso);
+}
+$('#btn-esci').addEventListener('click', () => esci());
+
+/* ═════════ Caricamento dati ═════════ */
+function applicaDati(r) {
+  S.ruolo = r.ruolo; S.slot = r.slot; S.date = r.date; S.pren = r.prenotazioni;
+  S.ultimoAgg = new Date();
+  if (!S.dataSel || !dataInfo(S.dataSel)) {
+    const oggi = oggiISO();
+    const prossima = S.date.find(d => d.data >= oggi);
+    S.dataSel = prossima ? prossima.data : (S.date.length ? S.date[S.date.length - 1].data : null);
+  }
+}
+
+function avviaApp(r) {
+  applicaDati(r);
+  S.caricato = true;
+  const v = memo.get('sb_vista');
+  S.vista = v === 'stagione' ? 'stagione' : 'giorno';
+  $('#accesso').classList.add('nascosto');
+  $('#app').classList.remove('nascosto');
+  $('#ruolo').textContent = isDocente() ? 'Docente' : 'Visualizzatore';
+  $('#ruolo-demo').classList.toggle('nascosto', !DEMO);
+  render();
+}
+
+async function carica(silenzioso) {
+  if (!S.chiave || S.inCorso) return;
+  const btn = $('#btn-aggiorna');
+  if (!silenzioso) btn.disabled = true;
+  const r = await api('elenco');
+  btn.disabled = false;
+  if (!S.chiave) return; // uscito nel frattempo
+  if (!r.ok) { gestisciErrore(r, () => carica()); return; }
+  nascondiBanner();
+  applicaDati(r);
+  render();
+  aggiornaPannelloDopoRefresh();
+}
+$('#btn-aggiorna').addEventListener('click', () => carica());
+$('#btn-riprova').addEventListener('click', () => { const f = riprova; nascondiBanner(); if (f) f(); });
+
+setInterval(() => { if (S.caricato && document.visibilityState === 'visible') carica(true); }, POLL_MS);
+document.addEventListener('visibilitychange', () => { if (S.caricato && document.visibilityState === 'visible') carica(true); });
+
+/* ═════════ Render ═════════ */
+function render() {
+  if (!S.caricato) return;
+  document.querySelectorAll('.seg-vista button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.vista === S.vista)));
+  $('#agg-ora').textContent = S.ultimoAgg ? 'Aggiornato alle ' + S.ultimoAgg.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' }) : '';
+  renderPillole();
+  renderRiepilogo();
+  if (!S.date.length) { $('#vista').innerHTML = '<div class="vuoto">Nessuna data in calendario. Aggiungile nella scheda "Date" del foglio.</div>'; return; }
+  if (S.vista === 'stagione' && !mobile()) renderStagione(); else renderGiorno();
+}
+
+function contaData(iso) { return S.pren.filter(p => p.data === iso).length; }
+
+function renderPillole() {
+  const oggi = oggiISO();
+  const prossima = (S.date.find(d => d.data >= oggi) || {}).data;
+  $('#pillole').innerHTML = S.date.map(d => {
+    const dt = aData(d.data);
+    const cls = ['pill', d.data === S.dataSel ? 'sel' : '', d.data < oggi ? 'passata' : '', !d.prenotabile ? 'dc' : '', d.data === prossima ? 'prossima' : ''].join(' ');
+    const conta = d.prenotabile ? `${contaData(d.data)}/${S.slot.length} prenotati` : 'da confermare';
+    return `<button type="button" class="${cls}" data-data="${d.data}" aria-pressed="${d.data === S.dataSel}" title="${esc(fmtLungo(d.data))}">
+      <span class="p-gg">${GG[dt.getDay()].slice(0, 3)} · ${dt.getFullYear()}</span>
+      <span class="p-num">${dt.getDate()} ${MESI[dt.getMonth()].slice(0, 3)}</span>
+      <span class="p-conta">${conta}</span></button>`;
+  }).join('');
+  const sel = $('#pillole .pill.sel');
+  if (sel) sel.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+}
+$('#pillole').addEventListener('click', e => {
+  const b = e.target.closest('.pill'); if (!b) return;
+  S.dataSel = b.dataset.data; render();
+});
+
+function renderRiepilogo() {
+  const el = $('#riep');
+  if (!S.dataSel) { el.innerHTML = ''; return; }
+  const d = dataInfo(S.dataSel);
+  const lista = S.pren.filter(p => p.data === S.dataSel);
+  const n = st => lista.filter(p => p.stato === st).length;
+  el.innerHTML = `<h2>${esc(fmtLungo(S.dataSel))}</h2>` + (d && !d.prenotabile
+    ? `<span class="r-dc">Data da confermare: non prenotabile</span>`
+    : `<span class="r-voce"><b>${lista.length}</b> prenotati su ${S.slot.length}</span>
+       <span class="r-voce"><i class="pallino eseguito"></i><b>${n('eseguito')}</b> eseguiti</span>
+       <span class="r-voce"><i class="pallino assente"></i><b>${n('assente')}</b> assenti</span>
+       <span class="r-voce"><i class="pallino attesa"></i><b>${n('in attesa')}</b> in attesa</span>`);
+}
+
+// Stato di interazione di una casella (slot di una data).
+function casella(data, slot) {
+  const p = prenDi(data, slot);
+  const d = dataInfo(data);
+  const prenotabile = !!(d && d.prenotabile);
+  let cliccabile = false, target = false;
+  if (S.sposta) {
+    target = !p && prenotabile;
+    cliccabile = target;
+  } else if (isDocente()) {
+    cliccabile = !!p || prenotabile;
+  } else {
+    cliccabile = !!p;
+  }
+  return { p, prenotabile, cliccabile, target };
+}
+
+function segStato(p) {
+  return `<div class="seg-stato" role="group" aria-label="Stato del colloquio di ${esc(p.studente)}">` + STATI.map(st =>
+    `<button type="button" data-azione="stato" data-id="${esc(p.id)}" data-stato="${st}" aria-pressed="${p.stato === st}">${ico(ICO_STATO[st])}${LBL_STATO[st]}</button>`
+  ).join('') + '</div>';
+}
+function badgeStato(st) { return `<span class="badge ${CLS_STATO[st]}">${ico(ICO_STATO[st])}${LBL_STATO[st]}</span>`; }
+
+function renderGiorno() {
+  const data = S.dataSel;
+  const righe = S.slot.map(s => {
+    const c = casella(data, s.inizio);
+    const ora = `<div class="ora">${fmtOra(s.inizio)}<small>– ${fmtOra(s.fine)}</small></div>`;
+    if (!c.p) {
+      const testo = c.target ? 'Sposta qui' : (isDocente() && c.prenotabile ? 'Libero · prenota' : (c.prenotabile ? 'Libero' : 'Non prenotabile'));
+      const tag = c.cliccabile ? 'button type="button"' : 'div';
+      return `<${tag} class="riga libera${c.cliccabile ? ' cliccabile' : ''}${c.target ? ' target' : ''}" data-azione="casella" data-data="${data}" data-slot="${s.inizio}">
+        ${ora}<div class="libero-txt">${c.cliccabile ? ico(c.target ? 'sposta' : 'piu') : ''}${testo}</div><span></span></${tag.split(' ')[0]}>`;
+    }
+    const p = c.p;
+    const destra = isDocente() || S.sposta ? badgeStato(p.stato) : segStato(p);
+    // Per il visualizzatore la riga non è un pulsante (contiene i pulsanti di stato).
+    const tag = isDocente() && !S.sposta ? 'button type="button"' : 'div';
+    return `<${tag} class="riga s-${CLS_STATO[p.stato]}${isDocente() && !S.sposta ? ' cliccabile' : ''}${S.sposta === p.id ? ' in-sposta' : ''}" data-azione="casella" data-data="${data}" data-slot="${s.inizio}">
+      ${ora}
+      <div class="chi">
+        <div class="chi-nome">${esc(p.studente)} <span class="classe">${esc(p.classe)}</span></div>
+        <div class="chi-meta">Prenotato da ${esc(p.docente)}</div>
+        ${p.nota ? `<div class="chi-nota">${ico('nota')}<span>${esc(p.nota)}</span></div>` : ''}
+      </div>
+      <div>${destra}</div></${tag.split(' ')[0]}>`;
+  }).join('');
+  $('#vista').innerHTML = `<div class="giorno">${righe}</div>`;
+}
+
+function renderStagione() {
+  const oggi = oggiISO();
+  const colCls = d => [d.data === S.dataSel ? 'col-sel' : '', d.data < oggi ? 'col-pass' : '', !d.prenotabile ? 'col-dc' : ''].join(' ');
+  const testa = S.date.map(d => {
+    const dt = aData(d.data);
+    return `<th class="${colCls(d)}" scope="col"><button type="button" class="th-data" data-azione="col" data-data="${d.data}" title="${esc(fmtLungo(d.data))}">
+      <span class="gg">${GG[dt.getDay()].slice(0, 3)} ${dt.getFullYear()}</span><span class="num">${dt.getDate()} ${MESI[dt.getMonth()].slice(0, 3)}</span>
+      <span class="cnt">${d.prenotabile ? contaData(d.data) + '/' + S.slot.length : 'da confermare'}</span></button></th>`;
+  }).join('');
+  const corpo = S.slot.map(s => `<tr><th scope="row">${fmtOra(s.inizio)}<small>${fmtOra(s.fine)}</small></th>` + S.date.map(d => {
+    const c = casella(d.data, s.inizio);
+    const base = `data-azione="casella" data-data="${d.data}" data-slot="${s.inizio}"`;
+    const tag = c.cliccabile ? 'button' : 'div';
+    let cls, dentro;
+    if (c.p) {
+      cls = `cella s-${CLS_STATO[c.p.stato]}${S.sposta === c.p.id ? ' in-sposta' : ''}`;
+      dentro = `<span class="c-nome">${esc(c.p.studente)}</span><span class="c-meta">${esc(c.p.classe)} · ${esc(c.p.docente)}</span>`;
+    } else {
+      cls = `cella libera${c.prenotabile ? '' : ' dc'}${c.target ? ' target' : ''}`;
+      dentro = c.cliccabile ? ico(c.target ? 'sposta' : 'piu') : '';
+    }
+    const aria = c.p ? `${c.p.studente}, ${c.p.classe}, ${LBL_STATO[c.p.stato]}` : (c.cliccabile ? 'Slot libero' : 'Non disponibile');
+    return `<td class="${colCls(d)}"><${tag} ${tag === 'button' ? 'type="button"' : ''} class="${cls}${c.cliccabile ? ' cliccabile' : ''}" ${base} aria-label="${esc(fmtCorto(d.data) + ' ' + s.inizio + ': ' + aria)}">${dentro}</${tag}></td>`;
+  }).join('') + '</tr>').join('');
+  $('#vista').innerHTML = `<div class="stagione-box"><table class="griglia"><thead><tr><th class="col-ora"></th>${testa}</tr></thead><tbody>${corpo}</tbody></table></div>
+    <div class="legenda"><span><i class="pallino attesa"></i>In attesa</span><span><i class="pallino eseguito"></i>Eseguito</span><span><i class="pallino assente"></i>Assente</span><span>Colonna a strisce: data da confermare</span></div>`;
+}
+
+/* ═════════ Interazioni sulla vista ═════════ */
+$('#vista').addEventListener('click', e => {
+  const t = e.target.closest('[data-azione]'); if (!t) return;
+  const az = t.dataset.azione;
+  if (az === 'stato') { e.stopPropagation(); cambiaStato(t.dataset.id, t.dataset.stato); return; }
+  if (az === 'col') { S.dataSel = t.dataset.data; render(); return; }
+  if (az !== 'casella') return;
+  const { data, slot } = t.dataset;
+  const c = casella(data, slot);
+  if (S.sposta) {
+    if (c.target) eseguiSposta(data, slot);
+    else if (c.p && c.p.id !== S.sposta) toast('Scegli uno slot libero.', 'ambra');
+    return;
+  }
+  if (!c.cliccabile) return;
+  if (S.vista === 'stagione') S.dataSel = data;
+  if (c.p) apriPannello({ tipo: 'esistente', id: c.p.id });
+  else if (isDocente()) apriPannello({ tipo: 'nuova', data, slot });
+  if (S.vista === 'stagione') render();
+});
+
+document.querySelectorAll('.seg-vista button').forEach(b => b.addEventListener('click', () => {
+  S.vista = b.dataset.vista; memo.set('sb_vista', S.vista); render();
+}));
+let ultimoMobile = mobile();
+window.addEventListener('resize', () => { const m = mobile(); if (m !== ultimoMobile) { ultimoMobile = m; render(); } });
+
+/* ═════════ Pannello laterale ═════════ */
+function apriPannello(cfg) {
+  S.pannello = cfg;
+  const pan = $('#pannello');
+  pan.innerHTML = cfg.tipo === 'nuova' ? htmlForm(null, cfg.data, cfg.slot) : (isDocente() ? htmlForm(S.pren.find(p => p.id === cfg.id)) : htmlLettura(S.pren.find(p => p.id === cfg.id)));
+  pan.classList.add('aperto'); pan.setAttribute('aria-hidden', 'false');
+  $('#velo').classList.add('aperto');
+  collegaPannello();
+  setTimeout(() => (pan.querySelector('input') || pan.querySelector('.pan-chiudi')).focus(), 60);
+}
+
+function chiudiPannello(forza) {
+  const pan = $('#pannello');
+  if (!forza && pan.querySelector('[data-busy="1"]')) return;
+  S.pannello = null;
+  pan.classList.remove('aperto'); pan.setAttribute('aria-hidden', 'true');
+  $('#velo').classList.remove('aperto');
+  setTimeout(() => { if (!S.pannello) pan.innerHTML = ''; }, 260);
+}
+$('#velo').addEventListener('click', () => chiudiPannello());
+
+function testaPannello(titolo, sotto) {
+  return `<div class="pan-testa"><div><h2 id="pan-titolo">${esc(titolo)}</h2><p>${esc(sotto)}</p></div>
+    <button type="button" class="pan-chiudi" data-pan="chiudi" aria-label="Chiudi">${ico('chiudi')}</button></div>`;
+}
+function quando(data, slot) { const s = slotInfo(slot); return `${fmtLungo(data)} · ${fmtOra(s.inizio)}–${fmtOra(s.fine)}`; }
+
+function htmlForm(p, data, slot) {
+  const nuova = !p;
+  const v = p || S.bozza || { studente: '', classe: '', docente: memo.get('sb_docente') || '', nota: '' };
+  if (!p) S.bozza = null;
+  const campo = (k, lbl, ph, extra) => `<div class="campo"><label for="f-${k}">${lbl}${k === 'nota' ? '' : ' *'}</label>
+    ${k === 'nota'
+      ? `<textarea class="inp" id="f-${k}" maxlength="${LIMITI[k]}" placeholder="${ph}">${esc(v[k])}</textarea>`
+      : `<input class="inp" id="f-${k}" maxlength="${LIMITI[k]}" placeholder="${ph}" value="${esc(v[k])}" autocomplete="off">`}
+    <span class="err-campo">Campo obbligatorio</span>${extra || ''}</div>`;
+  return testaPannello(nuova ? 'Nuova prenotazione' : 'Prenotazione', quando(nuova ? data : p.data, nuova ? slot : p.slot)) +
+    `<form class="pan-corpo" id="pan-form" novalidate>
+      ${nuova ? '' : `<div style="margin-bottom:18px">${badgeStato(p.stato)}</div>`}
+      ${campo('studente', 'Studente', 'Nome e cognome')}
+      ${campo('classe', 'Classe', 'es. 2B oppure 4A prim.')}
+      ${campo('docente', 'Docente che prenota', 'es. Prof.ssa Rossi')}
+      ${campo('nota', 'Nota', 'es. esce dalla lezione di tecnologia', `<div class="conta" id="conta-nota">0/${LIMITI.nota}</div>
+        <div class="nota-priv">${ico('scudo')}<span>Solo indicazioni organizzative: niente informazioni sanitarie o personali.</span></div>`)}
+      <button type="submit" class="nascosto"></button>
+    </form>
+    <div class="pan-piede">
+      <button type="button" class="btn btn-pri" data-pan="salva">${ico(nuova ? 'piu' : 'spunta')}<span>${nuova ? 'Prenota' : 'Salva modifiche'}</span></button>
+      ${nuova ? '' : `<button type="button" class="btn btn-sec" data-pan="sposta">${ico('sposta')}<span>Sposta</span></button>
+      <button type="button" class="btn btn-amb" data-pan="annulla">${ico('cestino')}<span>Annulla prenotazione</span></button>`}
+    </div>`;
+}
+
+function htmlLettura(p) {
+  return testaPannello('Colloquio', quando(p.data, p.slot)) +
+    `<div class="pan-corpo"><dl class="dett">
+      <dt>Studente</dt><dd>${esc(p.studente)}</dd>
+      <dt>Classe</dt><dd>${esc(p.classe)}</dd>
+      <dt>Docente</dt><dd>${esc(p.docente)}</dd>
+      <dt>Nota</dt><dd class="n">${p.nota ? esc(p.nota) : '—'}</dd>
+    </dl><p class="dett-tit">Esito del colloquio</p>${segStato(p)}</div>`;
+}
+
+function collegaPannello() {
+  const pan = $('#pannello');
+  const nota = pan.querySelector('#f-nota');
+  if (nota) {
+    const agg = () => { const n = nota.value.length; const c = $('#conta-nota'); c.textContent = `${n}/${LIMITI.nota}`; c.classList.toggle('vicino', n > LIMITI.nota - 15); };
+    nota.addEventListener('input', agg); agg();
+  }
+  pan.querySelectorAll('.inp').forEach(i => i.addEventListener('input', () => i.classList.remove('invalido')));
+  const form = pan.querySelector('#pan-form');
+  if (form) form.addEventListener('submit', e => { e.preventDefault(); salva(); });
+}
+
+$('#pannello').addEventListener('click', e => {
+  const t = e.target.closest('[data-pan],[data-azione="stato"]'); if (!t) return;
+  if (t.dataset.azione === 'stato') { cambiaStato(t.dataset.id, t.dataset.stato); return; }
+  const az = t.dataset.pan;
+  if (az === 'chiudi') chiudiPannello();
+  else if (az === 'salva') salva();
+  else if (az === 'sposta') iniziaSposta();
+  else if (az === 'annulla') chiediAnnulla();
+});
+
+// Dopo un refresh: il pannello resta aperto e i campi non vengono toccati,
+// a meno che la prenotazione sia sparita (annullata da un collega).
+function aggiornaPannelloDopoRefresh() {
+  const cfg = S.pannello; if (!cfg) return;
+  if (cfg.tipo === 'esistente') {
+    const p = S.pren.find(x => x.id === cfg.id);
+    if (!p) { chiudiPannello(true); toast('Prenotazione annullata da un collega.', 'ambra'); return; }
+    if (!isDocente()) {
+      const seg = $('#pannello .seg-stato');
+      if (seg) seg.outerHTML = segStato(p);
+    }
+  }
+  if (S.sposta && !S.pren.find(x => x.id === S.sposta)) { annullaSposta(); toast('Prenotazione annullata da un collega.', 'ambra'); }
+}
+
+function leggiForm() {
+  const pan = $('#pannello');
+  const v = {}; let ok = true;
+  ['studente', 'classe', 'docente', 'nota'].forEach(k => {
+    const i = pan.querySelector('#f-' + k);
+    v[k] = i.value.replace(/\s+/g, ' ').trim();
+    const male = (k !== 'nota' && !v[k]) || v[k].length > LIMITI[k];
+    i.classList.toggle('invalido', male);
+    if (male) ok = false;
+  });
+  if (!ok) { const p = pan.querySelector('.invalido'); if (p) p.focus(); return null; }
+  return v;
+}
+
+function occupaPulsante(btn, testo) {
+  const pan = $('#pannello');
+  pan.querySelectorAll('.pan-piede button').forEach(b => { b.disabled = true; });
+  btn.dataset.busy = '1';
+  btn.dataset.orig = btn.innerHTML;
+  btn.innerHTML = `<span class="spin"></span><span>${testo}</span>`;
+  S.inCorso = true;
+  return () => {
+    S.inCorso = false;
+    pan.querySelectorAll('.pan-piede button').forEach(b => { b.disabled = false; });
+    delete btn.dataset.busy;
+    if (btn.dataset.orig) btn.innerHTML = btn.dataset.orig;
+  };
+}
+
+async function salva() {
+  const cfg = S.pannello; if (!cfg) return;
+  const v = leggiForm(); if (!v) return;
+  const btn = $('#pannello [data-pan="salva"]');
+  if (btn.dataset.busy) return;
+  const libera = occupaPulsante(btn, 'Salvataggio…');
+  memo.set('sb_docente', v.docente);
+  const r = cfg.tipo === 'nuova'
+    ? await api('prenota', Object.assign({ data: cfg.data, slot: cfg.slot }, v))
+    : await api('modifica', Object.assign({ id: cfg.id }, v));
+  libera();
+  if (!r.ok) { gestisciErrore(r, salva); return; }
+  nascondiBanner();
+  chiudiPannello(true);
+  toast(cfg.tipo === 'nuova' ? `Prenotato: ${v.studente}, ${quando(cfg.data, cfg.slot)}` : 'Modifiche salvate.', 'verde');
+  carica(true);
+}
+
+function chiediAnnulla() {
+  const p = S.pren.find(x => x.id === (S.pannello || {}).id); if (!p) return;
+  dialogo({
+    titolo: 'Annullare la prenotazione?',
+    testo: `${p.studente} (${p.classe}) · ${quando(p.data, p.slot)}. Lo slot tornerà libero.`,
+    conferma: 'Annulla prenotazione', annulla: 'Mantieni',
+    onConferma: async () => {
+      const btn = $('#pannello [data-pan="annulla"]');
+      const libera = occupaPulsante(btn, 'Annullamento…');
+      const r = await api('annulla', { id: p.id });
+      libera();
+      if (!r.ok) { gestisciErrore(r, chiediAnnulla); return; }
+      nascondiBanner();
+      chiudiPannello(true);
+      toast(`Prenotazione di ${p.studente} annullata.`, 'verde');
+      carica(true);
+    },
+  });
+}
+
+/* ═════════ Sposta ═════════ */
+function iniziaSposta() {
+  const p = S.pren.find(x => x.id === (S.pannello || {}).id); if (!p) return;
+  S.sposta = p.id;
+  chiudiPannello(true);
+  $('#banner-sposta p').innerHTML = `Scegli il nuovo slot per <b>${esc(p.studente)}</b> (${esc(p.classe)}). Puoi cambiare data dalle schede in alto.`;
+  $('#banner-sposta').classList.remove('nascosto');
+  render();
+}
+function annullaSposta() {
+  if (!S.sposta) return;
+  S.sposta = null;
+  $('#banner-sposta').classList.add('nascosto');
+  render();
+}
+$('#btn-sposta-annulla').addEventListener('click', annullaSposta);
+
+async function eseguiSposta(data, slot) {
+  const p = S.pren.find(x => x.id === S.sposta); if (!p || S.inCorso) return;
+  S.inCorso = true;
+  $('#banner-sposta p').innerHTML = `<span class="spin" style="display:inline-block;vertical-align:-3px;margin-right:8px"></span>Spostamento di <b>${esc(p.studente)}</b>…`;
+  const r = await api('sposta', { id: p.id, data, slot });
+  S.inCorso = false;
+  if (!r.ok) {
+    $('#banner-sposta p').innerHTML = `Scegli il nuovo slot per <b>${esc(p.studente)}</b> (${esc(p.classe)}).`;
+    gestisciErrore(r, () => eseguiSposta(data, slot));
+    return;
+  }
+  nascondiBanner();
+  S.sposta = null; S.dataSel = data;
+  $('#banner-sposta').classList.add('nascosto');
+  toast(`${p.studente} spostato a ${quando(data, slot)}.`, 'verde');
+  carica(true);
+}
+
+/* ═════════ Stato del colloquio (visualizzatore) ═════════ */
+const statoInVolo = new Set();
+async function cambiaStato(id, stato) {
+  const p = S.pren.find(x => x.id === id);
+  if (!p || p.stato === stato || statoInVolo.has(id)) return;
+  const prima = p.stato;
+  p.stato = stato;                    // aggiornamento ottimistico
+  statoInVolo.add(id);
+  render(); aggiornaPannelloDopoRefresh();
+  const r = await api('stato', { id, stato });
+  statoInVolo.delete(id);
+  if (!r.ok) {
+    const q = S.pren.find(x => x.id === id); if (q) q.stato = prima;
+    render(); aggiornaPannelloDopoRefresh();
+    gestisciErrore(r, () => cambiaStato(id, stato));
+    return;
+  }
+  nascondiBanner();
+}
+
+/* ═════════ Dialogo di conferma ═════════ */
+function dialogo({ titolo, testo, conferma, annulla, onConferma }) {
+  const host = $('#dialogo-host');
+  host.innerHTML = `<div class="dialogo-velo"><div class="dialogo" role="alertdialog" aria-modal="true" aria-labelledby="dlg-t">
+    <h3 id="dlg-t">${esc(titolo)}</h3><p>${esc(testo)}</p>
+    <div class="azioni"><button type="button" class="btn btn-sec" data-d="no">${esc(annulla)}</button>
+    <button type="button" class="btn btn-amb-pieno" data-d="si">${esc(conferma)}</button></div></div></div>`;
+  const chiudi = () => { host.innerHTML = ''; };
+  host.querySelector('[data-d="no"]').addEventListener('click', chiudi);
+  host.querySelector('.dialogo-velo').addEventListener('click', e => { if (e.target.classList.contains('dialogo-velo')) chiudi(); });
+  host.querySelector('[data-d="si"]').addEventListener('click', () => { chiudi(); onConferma(); });
+  host.querySelector('[data-d="no"]').focus();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  if ($('#dialogo-host').innerHTML) { $('#dialogo-host').innerHTML = ''; return; }
+  if (S.pannello) { chiudiPannello(); return; }
+  if (S.sposta) annullaSposta();
+});
+
+/* ═════════ Avvio ═════════ */
+(async function avvio() {
+  const salvata = sessione.get();
+  if (!salvata) { mostraAccesso(); return; }
+  S.chiave = salvata;
+  const r = await api('elenco');
+  if (r.ok) avviaApp(r);
+  else { sessione.del(); S.chiave = null; mostraAccesso(r.codice === 'password' ? null : (r.messaggio || null)); }
+})();
+</script>
+</body>
+</html>
